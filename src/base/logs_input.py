@@ -8,6 +8,12 @@ class LogsInput(ILogsInput):
         self._finished = False
 
     def read_next(self, num_of_lines: int) -> list[str]:
+        """
+        read the next num_of_lines lines from the logs file and return them as a list of strings.
+         If the end of the file is reached, set the finished flag to True.
+        :param num_of_lines:
+        :return:
+        """
         lines = []
 
         for _ in range(num_of_lines):

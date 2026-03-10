@@ -6,6 +6,7 @@ class IAnalysisController(ABC):
     def __init__(self, logs_input: ILogsInput, logs_parser: ILogsParser, logs_converter: ILogsConverter,
                  logs_analyzer: ILogsAnalyzer, analysis_output: IAnalysisOutput):
         pass
+
     @abstractmethod
     def start(self) -> None:
         pass
