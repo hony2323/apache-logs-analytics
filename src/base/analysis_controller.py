@@ -1,4 +1,4 @@
-from core.interfaces import IAnalysisController, ILogsInput, ILogsParser, ILogsConverter, ILogsAnalyzer, IAnalysisOutput
+from src.core.interfaces import IAnalysisController, ILogsInput, ILogsParser, ILogsConverter, ILogsAnalyzer, IAnalysisOutput
 
 
 class AnalysisController(IAnalysisController):

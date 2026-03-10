@@ -1,4 +1,4 @@
-from core.interfaces import IAnalysisOutput, AnalyzedLogObject
+from src.core.interfaces import IAnalysisOutput, AnalyzedLogObject
 
 
 class AnalysisOutput(IAnalysisOutput):
