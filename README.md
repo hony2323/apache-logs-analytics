@@ -12,7 +12,7 @@ A tool for parsing and analyzing Apache access logs, with GeoIP country lookup a
 1. **Clone the repository**
 
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/hony2323/apache-logs-analytics.git
    cd apache-logs-analytics
    ```
 
