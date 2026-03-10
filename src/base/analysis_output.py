@@ -3,12 +3,15 @@ from src.core.interfaces import IAnalysisOutput, AnalyzedLogObject
 
 class AnalysisOutput(IAnalysisOutput):
     def submit(self, analysis: AnalyzedLogObject) -> None:
-        print("Countries percentage:")
-        for country, percentage in analysis.countries_percentage.items():
-            print(f"{country}: {percentage:.2f}%")
-        print("Browsers percentage:")
-        for browser, percentage in analysis.browsers_percentage.items():
-            print(f"{browser}: {percentage:.2f}%")
-        print("Operating systems percentage:")
-        for operating_system, percentage in analysis.operating_systems_percentage.items():
-            print(f"{operating_system}: {percentage:.2f}%")
+        """"""
+        print("County:")
+        AnalysisOutput._print_descending(analysis.countries_percentage)
+        print("OS:")
+        AnalysisOutput._print_descending(analysis.operating_systems_percentage)
+        print("Browser:")
+        AnalysisOutput._print_descending(analysis.browsers_percentage)
+
+    @staticmethod
+    def _print_descending(data: dict[str, float]) -> None:
+        for key, value in sorted(data.items(), key=lambda x: x[1], reverse=True):
+            print(f"{key}: {value:.2f}%")
