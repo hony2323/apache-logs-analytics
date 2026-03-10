@@ -29,7 +29,7 @@ class ILogsParser(ABC):
 
 class ILogsConverter(ABC):
     @abstractmethod
-    def convert(self, parsed_logs: ParsedLogObject) -> list[ConvertedLogObject]:
+    def convert(self, parsed_logs: list[ParsedLogObject]) -> list[ConvertedLogObject]:
         pass
 
 
