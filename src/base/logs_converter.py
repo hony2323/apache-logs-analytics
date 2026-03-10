@@ -24,7 +24,7 @@ class GeoLite2FileLogsConverter(ILogsConverter):
                 browser = user_agent.browser.family
                 operating_system = user_agent.os.family
             except Exception as e:
-                print(f"Error parsing user agent: {log.user_agent}. Error: {e}")
+                # print(f"Error parsing user agent: {log.user_agent}. Error: {e}")
                 browser = "Unknown"
                 operating_system = "Unknown"
             converted_logs.append(ConvertedLogObject(

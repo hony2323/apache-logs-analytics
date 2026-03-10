@@ -13,7 +13,6 @@ class LogsAnalyzer(ILogsAnalyzer):
         self.browsers_counters = {}
         self.operating_systems_counters = {}
 
-
     def add_to_analysis(self, converted_logs: list[ConvertedLogObject]) -> None:
         for log in converted_logs:
             country = log.country
@@ -36,4 +35,21 @@ class LogsAnalyzer(ILogsAnalyzer):
                 self.operating_systems_counters[operating_system] = 1
 
     def get_analysis(self) -> AnalyzedLogObject:
-        pass
+        """
+        from the self attributes, create an AnalyzedLogObject and return it
+        each counter should be replaced with the percentage of the total logs analyzed, and the total logs analyzed should be added to the AnalyzedLogObject
+        for example, the percentage of each country in the total of countries
+        """
+
+        total_logs = sum(self.countries_counters.values())
+        countries_percentage = {country: count / total_logs * 100 for country, count in self.countries_counters.items()}
+        browsers_percentage = {browser: count / total_logs * 100 for browser, count in self.browsers_counters.items()}
+        operating_systems_percentage = {operating_system: count / total_logs * 100 for operating_system, count in
+                                        self.operating_systems_counters.items()}
+
+        return AnalyzedLogObject(
+            total_logs=total_logs,
+            countries_percentage=countries_percentage,
+            browsers_percentage=browsers_percentage,
+            operating_systems_percentage=operating_systems_percentage
+        )

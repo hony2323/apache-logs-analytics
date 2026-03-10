@@ -86,4 +86,7 @@ class ConvertedLogObject:
 
 @dataclasses.dataclass
 class AnalyzedLogObject:
-    pass
+    total_logs: int
+    countries_percentage: dict[str, float]
+    browsers_percentage: dict[str, float]
+    operating_systems_percentage: dict[str, float]
