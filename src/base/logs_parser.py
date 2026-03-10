@@ -10,7 +10,7 @@ class ApacheLogsParser(ILogsParser):
         self.logs_format = '%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-Agent}i"'
         self.parser = LogParser(self.logs_format)
 
-    def parse(self, raw_logs: list[str]) -> list[ParsedLogObject]:
+    def parse(self, raw_logs: list[str]) -> list[ApacheParsedLog]:
         """
         Parse the raw logs using the apachelogs library and return a list of ParsedLogObject.
         :param raw_logs:

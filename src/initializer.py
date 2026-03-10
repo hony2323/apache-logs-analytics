@@ -1,3 +1,4 @@
+from src.base.logs_converter import GeoLite2FileLogsConverter
 from src.base.logs_input import LogsInput
 from src.base.logs_parser import ApacheLogsParser
 
@@ -12,10 +13,11 @@ class Facade:
         self.logs_input = LogsInput(
             logs_file_path="src/data/apache_log.txt")  # Todo: make the file path configurable
         self.logs_parser = ApacheLogsParser()
-        pass
+        self.logs_converter = GeoLite2FileLogsConverter("src/data/GeoLite2-Country.mmdb")
 
     def start(self):
         logs = self.logs_input.read_next(5)  # Todo: make the number of lines configurable
         parsed_logs = self.logs_parser.parse(logs)
-        for lo in parsed_logs:
+        converted_logs = self.logs_converter.convert(parsed_logs)
+        for lo in converted_logs:
             print(lo)
