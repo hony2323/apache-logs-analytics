@@ -9,7 +9,6 @@ A tool for parsing and analyzing Apache access logs, with GeoIP country lookup a
 ## Requirements
 
 - Python 3.x
-- A GeoLite2-Country database file (`.mmdb`) from [MaxMind](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data)
 
 ## Setup
 
