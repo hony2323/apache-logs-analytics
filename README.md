@@ -30,11 +30,6 @@ A tool for parsing and analyzing Apache access logs, with GeoIP country lookup a
    pip install -r requirements.txt
    ```
 
-4. **Add required data files**
-
-   Place the following files in `src/data/`:
-   - `apache_log.txt` — your Apache access log file
-   - `GeoLite2-Country.mmdb` — the MaxMind GeoLite2 Country database
 
 ## Running
 
