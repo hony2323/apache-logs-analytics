@@ -1,4 +1,8 @@
+# The Technical Design is in the projects root. a .pdf file
+
+
 # apache-logs-analytics
+
 
 A tool for parsing and analyzing Apache access logs, with GeoIP country lookup and user-agent parsing.
 
