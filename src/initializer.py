@@ -1,3 +1,4 @@
+from src.base.analysis_controller import AnalysisController
 from src.base.analysis_output import AnalysisOutput
 from src.base.logs_analyzer import LogsAnalyzer
 from src.base.logs_converter import GeoLite2FileLogsConverter
@@ -18,10 +19,13 @@ class Facade:
         self.logs_converter = GeoLite2FileLogsConverter("src/data/GeoLite2-Country.mmdb")
         self.logs_analyzer = LogsAnalyzer()
         self.analysis_output = AnalysisOutput()
+        self.controller = AnalysisController(
+            logs_input=self.logs_input,
+            logs_parser=self.logs_parser,
+            logs_converter=self.logs_converter,
+            logs_analyzer=self.logs_analyzer,
+            analysis_output=self.analysis_output
+        )
 
     def start(self):
-        logs = self.logs_input.read_next(115)  # Todo: make the number of lines configurable
-        parsed_logs = self.logs_parser.parse(logs)
-        converted_logs = self.logs_converter.convert(parsed_logs)
-        self.logs_analyzer.add_to_analysis(converted_logs)
-        self.analysis_output.submit(self.logs_analyzer.get_analysis())
+        self.controller.start()

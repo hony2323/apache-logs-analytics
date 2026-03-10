@@ -21,6 +21,7 @@ class LogsInput(ILogsInput):
 
             if not line:
                 self._finished = True
+                self.logs_file.close()
                 break
 
             lines.append(line.rstrip("\n"))

@@ -17,7 +17,7 @@ class GeoLite2FileLogsConverter(ILogsConverter):
                 response = self.reader.country(log.remote_host)
                 country = response.country.name
             except Exception as e:
-                print(f"Error converting log: {log}. Error: {e}")
+                # print(f"Error converting log: {log}. Error: {e}")
                 country = "Unknown"
             try:
                 user_agent = parse(log.user_agent)
@@ -40,4 +40,5 @@ class GeoLite2FileLogsConverter(ILogsConverter):
                 operating_system=operating_system,
                 browser=browser
             ))
+            a = 5
         return converted_logs

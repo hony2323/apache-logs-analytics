@@ -31,7 +31,8 @@ class ApacheLogsParser(ILogsParser):
                     user_agent=parsed_line.headers_in.get("User-Agent", "")
                 ))
             except Exception as e:
-                print(f"Error parsing line: {line}. Error: {e}")
+                # print(f"Error parsing line: {line}. Error: {e}")
+                pass
         return parsed_lines
 
 
