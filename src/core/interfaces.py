@@ -74,6 +74,8 @@ class ConvertedLogObject:
     referer: str
     user_agent: str
     country: str
+    operating_system: str
+    browser: str
 
     def __str__(self):
         return (f"Remote Host: {self.remote_host},"

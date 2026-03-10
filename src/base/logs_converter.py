@@ -1,4 +1,4 @@
-import dataclasses
+from user_agents import parse
 
 import geoip2.database
 
@@ -19,6 +19,14 @@ class GeoLite2FileLogsConverter(ILogsConverter):
             except Exception as e:
                 print(f"Error converting log: {log}. Error: {e}")
                 country = "Unknown"
+            try:
+                user_agent = parse(log.user_agent)
+                browser = user_agent.browser.family
+                operating_system = user_agent.os.family
+            except Exception as e:
+                print(f"Error parsing user agent: {log.user_agent}. Error: {e}")
+                browser = "Unknown"
+                operating_system = "Unknown"
             converted_logs.append(ConvertedLogObject(
                 remote_host=log.remote_host,
                 remote_logname=log.remote_logname,
@@ -28,6 +36,8 @@ class GeoLite2FileLogsConverter(ILogsConverter):
                 bytes_sent=log.bytes_sent,
                 referer=log.referer,
                 user_agent=log.user_agent,
-                country=country
+                country=country,
+                operating_system=operating_system,
+                browser=browser
             ))
         return converted_logs
