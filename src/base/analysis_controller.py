@@ -3,16 +3,17 @@ from src.core.interfaces import IAnalysisController, ILogsInput, ILogsParser, IL
 
 class AnalysisController(IAnalysisController):
     def __init__(self, logs_input: ILogsInput, logs_parser: ILogsParser, logs_converter: ILogsConverter,
-                 logs_analyzer: ILogsAnalyzer, analysis_output: IAnalysisOutput):
+                 logs_analyzer: ILogsAnalyzer, analysis_output: IAnalysisOutput, num_of_lines_to_read: int = 100):
         self.logs_input = logs_input
         self.logs_parser = logs_parser
         self.logs_converter = logs_converter
         self.logs_analyzer = logs_analyzer
         self.analysis_output = analysis_output
+        self.num_of_lines_to_read = num_of_lines_to_read
 
     def start(self) -> None:
         while not self.logs_input.is_finished():
-            raw_logs = self.logs_input.read_next(100)
+            raw_logs = self.logs_input.read_next(self.num_of_lines_to_read)
             parsed_logs = self.logs_parser.parse(raw_logs)
             converted_logs = self.logs_converter.convert(parsed_logs)
             self.logs_analyzer.add_to_analysis(converted_logs)
