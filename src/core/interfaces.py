@@ -1,3 +1,4 @@
+import dataclasses
 from abc import ABC, abstractmethod
 
 
@@ -50,13 +51,37 @@ class IAnalysisOutput(ABC):
         pass
 
 
-class ParsedLogObject(ABC):
-    pass
+@dataclasses.dataclass
+class ParsedLogObject:
+    remote_host: str
+    remote_logname: str
+    remote_user: str
+    request_line: str
+    status: int
+    bytes_sent: int
+    referer: str
+    user_agent: str
 
 
-class ConvertedLogObject(ABC):
-    pass
+@dataclasses.dataclass
+class ConvertedLogObject:
+    remote_host: str
+    remote_logname: str
+    remote_user: str
+    request_line: str
+    status: int
+    bytes_sent: int
+    referer: str
+    user_agent: str
+    country: str
+
+    def __str__(self):
+        return (f"Remote Host: {self.remote_host},"
+                f" Country: {self.country},"
+                f"User Agent: {self.user_agent}"
+                )
 
 
-class AnalyzedLogObject(ABC):
+@dataclasses.dataclass
+class AnalyzedLogObject:
     pass

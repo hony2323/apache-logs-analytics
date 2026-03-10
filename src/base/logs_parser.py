@@ -10,7 +10,7 @@ class ApacheLogsParser(ILogsParser):
         self.logs_format = '%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-Agent}i"'
         self.parser = LogParser(self.logs_format)
 
-    def parse(self, raw_logs: list[str]) -> list[ApacheParsedLog]:
+    def parse(self, raw_logs: list[str]) -> list[ParsedLogObject]:
         """
         Parse the raw logs using the apachelogs library and return a list of ParsedLogObject.
         :param raw_logs:
@@ -20,7 +20,7 @@ class ApacheLogsParser(ILogsParser):
         for line in raw_logs:
             try:
                 parsed_line = self.parser.parse(line)
-                parsed_lines.append(ApacheParsedLog(
+                parsed_lines.append(ParsedLogObject(
                     remote_host=parsed_line.remote_host,
                     remote_logname=parsed_line.remote_logname,
                     remote_user=parsed_line.remote_user,
@@ -36,7 +36,7 @@ class ApacheLogsParser(ILogsParser):
 
 
 @dataclass
-class ApacheParsedLog(ParsedLogObject):
+class ParsedLogObject(ParsedLogObject):
     remote_host: str
     remote_logname: str
     remote_user: str
